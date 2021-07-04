@@ -23,7 +23,9 @@ open -a "Google Chrome" --args --allow-file-access-from-files file:////[Your fil
 
 ```
 
-# [RIKEN Microstructural Imaging Metadatabase (RIKEN MIM)](http://clst.multimodal.riken.jp/RIKENImageDB/)
+# Imaging Metadatabase
+
+[RIKEN Microstructural Imaging Metadatabase (RIKEN MIM)](http://clst.multimodal.riken.jp/RIKENImageDB/)
 
 # Cite this paper as:
 
