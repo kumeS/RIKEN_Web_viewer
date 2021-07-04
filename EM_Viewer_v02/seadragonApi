@@ -1,0 +1,25 @@
+seadragon.viewport.getCenter();//getCenter
+new OpenSeadragon.Point(0.1, 0.1)//point(locations)
+seadragon.drawer.getCanvasSize(true)//getCanvasSize
+
+//seadragon.addOverlay(document.getElementById('right-arrow-overlay-2'), new OpenSeadragon.Point(0, 0), 'CENTER');
+console.log(new OpenSeadragon.getElementPosition(document.getElementById('map')))
+console.log(new OpenSeadragon.getMousePosition(e))
+console.log(new OpenSeadragon.getElementSize(document.getElementById('map')))
+console.log(seadragon.viewport.getBounds())
+console.log(seadragon.viewport.getHomeBounds())
+console.log(seadragon.viewport.getCenter())
+console.log(seadragon.viewport.getContainerSize())
+console.log(new OpenSeadragon.Rect(seadragon))
+console.log(new OpenSeadragon.getPageScroll(seadragon))
+
+    //navigatorPosition:   "TOP_RIGHT",
+
+
+
+//memo
+
+
+	$('#range > svg > .axis > .tick > text').each(function() {
+		$(this).text('x ' + $(this).text());
+	});

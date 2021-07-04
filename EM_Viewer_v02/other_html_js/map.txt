@@ -1,0 +1,6 @@
+viewer.addTiledImage({
+tileSource: "DZI_images/DZI_IMAGE0000100001.dzi",
+x: 0/5120
+y: 0/3840
+width: 1
+});

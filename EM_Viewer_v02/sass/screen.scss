@@ -1,0 +1,889 @@
+@charset "UTF-8";
+
+/* 
+   http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* --- reset css --- */
+
+
+a {
+  ui_btn-decoration: none;
+}
+
+$LAYER_MAP:0;
+$LAYER_MENU:2;
+$LAYER_UI:3;
+$LAYER_UI_TOP:4;
+$LAYER_UI_MEASURE:5;
+$LAYER_UI_MEASURE_LABEL:6;
+$LAYER_PIN:7;
+$LAYER_ANNOTATION_MENU:7;
+
+$COLOR_INACTIVE:#3dccd4;
+$COLOR_ACTIVE:#fff04d;
+
+$nav_width: 280px;
+$right_width: 300px;
+$contents_margin_left: 10px;
+
+html, body {
+	width: 100%;
+	height: 100%;
+	background: black;
+	margin: 0;
+	
+	user-select: none;
+	-webkit-user-select: none;
+	
+	input, textarea {
+ 	-webkit-user-select : auto;
+	}
+	
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer */
+	-khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+	-webkit-user-select: none; /* Chrome, Safari, and Opera */
+	-webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+	
+
+	cursor: default;
+	overflow: hidden;
+	
+	font-family: "HiraMaruProN-W6","ヒラギノ丸ゴ ProN","Hiragino Maru Gothic ProN","Meiryo","メイリオ","游ゴシック体",'Yu Gothic',"YuGothic";
+}
+
+img{
+	user-select: none;
+	-webkit-user-select: none;
+	
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer */
+	-khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+	-webkit-user-select: none; /* Chrome, Safari, and Opera */
+	-webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+	
+	
+}
+
+.test{
+	width: 100px;
+}
+
+.pin {
+	z-index: $LAYER_PIN;
+}
+
+.pin_mark{
+	cursor: pointer;
+	//width: 26px;
+	height: 24px;
+	
+	user-select: none;
+	-webkit-user-select: none;
+	
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer */
+	-khtml-user-select: none; /* KHTML browsers (e.g. Konqueror) */
+	-webkit-user-select: none; /* Chrome, Safari, and Opera */
+	-webkit-touch-callout: none; /* Disable Android and iOS callouts*/
+	
+	
+}
+
+.menu {
+	z-index: $LAYER_MENU;
+}
+
+#header {
+	width: 100vw;
+	height: 60px;
+	#title {
+		position: absolute;
+		left: 20px;
+		top: 10px;
+		width: 1000px;
+		height: 50px;
+		color: white;
+		font-family: sans-serif;
+		font-size: 24px;
+	}
+}
+
+body > svg 
+{
+	overflow: visible;
+	pointer-events: none;
+	position: absolute;
+	top: 0px;
+	.axis path, .axis line {
+		fill: none;
+		stroke: white;
+		stroke-width: 0.5px;
+	}
+	.line {
+		fill: none;
+		stroke: blue;
+		stroke-width: 1px;
+	}
+	.tick ui_btn {
+		fill:white;
+		stroke: white;
+		font-size: 10px;
+		font-weight: 300;
+	}
+	.tick line {
+		stroke: white;
+		opacity: 0.2;
+	}
+
+	text{
+		fill:white;
+		font-size: 10px;
+	}
+}
+
+#map, #map-area
+{
+	position: absolute;
+	width: calc(100vw - 40px);
+	top: 0px;
+	left: 40px;
+	bottom: 30px;
+	height: calc(100vh - 30px);
+	z-index: $LAYER_MAP;
+}
+
+.btn_box
+{		
+	vertical-align: top;
+	//background-color: green;
+	display: inline-block;
+	color: white;
+	font-size: 10px;
+	width: 50px;
+	height: 50px;
+	margin-top: 0;
+	margin-left: 4px;
+	margin-bottom: 0;
+	padding: 0;
+	position: relative;
+	
+	div{
+		margin: 0;
+		text-align: center;
+		font-size: 9px;
+		
+	}
+	
+	img{
+		margin-left: 10px;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	
+	#file_import{
+		background-color: yellow;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50px;
+		height: 50px;
+		opacity: 0.0;
+		cursor: pointer;
+	}
+	
+	#file_import_replace{
+		background-color: yellow;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 50px;
+		height: 50px;
+		opacity: 0.0;
+		cursor: pointer;
+	}
+}
+
+.divline{
+    width: 100px;
+    height: 10px;
+    border: solid thin red;
+    position: absolute;
+    background-color: red;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+
+
+.ui_btn{
+	width: 30px;
+	height: 30px;
+	margin-top: 0px;
+	margin-left:  $contents_margin_left;
+	margin-bottom:1px;
+	cursor: pointer;
+}
+
+.measure_pin{
+	display: block;
+	width: 17px;
+	height: 17px;
+	margin-top: 8.5px;
+	z-index: $LAYER_UI_MEASURE;
+}
+
+.measure_dot{
+	display: block;
+	width: 8px;
+	height: 8px;
+	margin-top: 4px;
+	z-index: $LAYER_UI_MEASURE;
+	-webkit-filter: drop-shadow( 0px 3px 3px rgba(0,0,0,0.9));
+	-moz-filter:  drop-shadow( 0px 3px 3px rgba(0,0,0,0.9) );
+    filter: drop-shadow( 0px 3px 3px rgba(0,0,0,0.9) ); 
+    
+    /*
+    -webkit-filter: drop-shadow( 0px 3px 3px rbga(0,0,0,0.3));
+    filter: drop-shadow( 0px 3px 3px rbga(0,0,0,0.3) ); */
+}
+
+.measure_label{
+	display: block;
+	width: 80px;
+	height: 18px;
+	line-height: 18px;
+	text-align: center;
+	margin-top: 9px;
+	color: white;
+	font-size: 10px;
+	background-color: #ff367c;
+	z-index: $LAYER_UI_MEASURE_LABEL;
+	border-radius: 9px;
+	-webkit-filter: drop-shadow( 0px 3px 3px rgba(0,0,0,0.3));
+	-moz-filter:  drop-shadow( 0px 3px 3px rgba(0,0,0,0.3) );
+    filter: drop-shadow( 0px 3px 3px rgba(0,0,0,0.3) ); 
+}
+
+
+#right{
+	
+	background-color: rgba(0,0,0,0.8);
+	width: $right_width;
+	position: absolute;
+	height: calc(100vh);
+	right: 0;
+	top: 0px;
+	z-index: $LAYER_UI;
+	
+	overflow-y: scroll;
+	overflow-x: hidden;
+	
+	display: block;
+	
+	section{
+		border-top: 2px dotted rgba(255.0,255.0,255.0,0.5);
+	}
+	
+	.spacer{
+		clear: both;
+		width: $right_width;
+		height: 200px;	
+	}
+	
+	/*
+	.left_btn{	
+		margin-left: 0px;
+	}*/
+	
+	.close_btn{
+		position: absolute;
+		right: 10px;
+		top: 3px;
+		width: 11px;
+		height: 11px;
+		cursor: pointer;
+	}
+	
+	.section_title_box{
+		clear: both;
+		display: block;
+		width: $right_width;
+		height: 30px;
+		z-index: $LAYER_UI_TOP;
+		cursor: pointer;
+	}
+	
+	.section_title
+	{	
+		font-size: 14px;
+		color: $COLOR_ACTIVE;
+		line-height: 30px;
+		margin:0px;	
+	}
+	
+	.section_title_inactive
+	{
+		color: $COLOR_INACTIVE;	
+	}
+	
+	.section_content
+	{
+		width: $right_width;	
+	}
+	
+	.section_arrow
+	{
+		color: $COLOR_INACTIVE;
+		margin-left: $contents_margin_left;
+		width: 8px;
+		height: 5px;
+	}
+	
+	.section_icon
+	{
+		display: inline;
+		width: 14px;
+		height: 14px;
+		margin-top: 7px;
+		margin-left: $contents_margin_left;
+		margin-right: 5px;
+	}
+	
+	h2{
+		font-size: 14px;
+		color: $COLOR_INACTIVE;
+	}
+	
+	table
+	{
+		color: white;
+		font-size: 12px;
+		text-align: left;
+		margin-left: $contents_margin_left;
+		margin-bottom: 10px;
+	}
+	
+	tr{
+		//background-color: blue;
+		margin-left: $contents_margin_left;
+	}
+	
+	th{
+		//background-color: red;
+		opacity: 0.5;
+		padding-top: 5px;
+		padding-right: 10px;
+	}
+	
+	
+	#menu_header{
+		display: block;
+		width: auto;
+		height: 26px;
+	}
+	
+	.title_logo{
+		
+		width: 260px;
+		
+		margin-left: 10px;
+		margin-bottom: 10px;
+		
+		img{
+			width: 275px;
+			height: 38px;
+		}
+	}
+	
+	/*
+	.toolbar_box{
+		margin-top: 10px;
+		display: block;
+		width: 200px;
+		height: 50px;
+	}*/
+	
+	#toolbar_box
+	{
+		display: block;
+		margin-top: 0;
+		width: $right_width - 20px;
+		margin-left: $contents_margin_left;
+		height: 1px;
+		//background-color: blue;
+		//background-color: red;
+		margin-bottom: 0px;
+	}
+	
+	
+	.spacer
+	{
+		height: 60px;
+		//background-color: blue;
+	}
+	
+	/*
+	<div style="background: transparent none repeat scroll 0% 0%; border: 2px solid rgb(153, 0, 0); margin: 0px; padding: 0px; position: relative; top: 59px; left: -127px; font-size: 0px; overflow: hidden; float: left; z-index: 999999999; cursor: default; transform: rotate(0deg); display: block; width: 311px; height: 99px;" id="navigator-inner-displayregion" class="displayregion"></div>	
+	*/
+	
+	//Navigator
+	
+	#navigator
+	{
+		background-color: black;
+		margin: auto;
+		margin-top:2px;
+		margin-bottom:2px;
+		position: relative;
+		width: $nav_width;
+		height: 150px;
+		
+		#navigator-inner {
+			position: absolute;
+			width: $nav_width;
+			height: 150px;
+			* {
+				cursor: pointer !important;
+			}
+		}
+	}
+	
+	/*
+	.toolbar
+	{
+		font-size: 8px;
+		margin: 0;
+		margin-bottom: 10px;
+		padding: 0px;
+		position: relative;
+		height: 50px;
+		width: 200px;
+		//background-color: blue;
+	}
+	
+	*/
+	
+	
+	// Range
+	
+	#range {
+		
+		display: block;
+		
+		margin: 0;
+		position: relative;
+		//background-color: gray;
+		
+		width: $nav_width;
+		height: 30px;
+		
+		svg {
+			position: absolute;
+			top: 8px;
+			pointer-events: none;
+			
+		    .axis text {
+		        font-family: sans-serif;
+		        font-size: 11px;
+		        stroke: white;
+		    }
+		    .axis path,
+		    .axis line {
+		        fill: none;
+		        stroke: white;
+		    }
+		}
+		
+		#range-area
+		{
+			width: $nav_width;
+			height: 24px;
+			position: absolute;
+			top: 8px;
+			left: ($right_width - $nav_width)/2;
+			
+			/*
+			#range-bar {
+				width: 10px;
+				height: 16px;
+				border-radius: 2px;
+				position: absolute;
+				top: -4px;
+				left: -8px;
+				background: grey;
+				cursor: pointer;
+			}
+			*/
+			
+			#range-bar {
+				display: block;
+				width: 12px;
+				height: 13px;
+				position: absolute;
+				top: -3px;
+				left: -6.0px;
+				cursor: pointer;
+				
+				background-image: url("../images/range_arrow.svg");
+				background-size: 12px 13px;
+				background-position: center center;
+			}
+			
+			#range-tip
+			{
+
+			}
+		}
+	}
+	
+	// Snapshot
+	
+	$snapshot_width :280px;
+	
+	.snapshot_list_box
+	{
+		display: block;
+		//width: $right_width - 20;
+		width:$snapshot_width - 10px;
+		margin-left:10px;
+		margin-top: 10px;		
+	}
+	
+	.snapshot_img
+	{
+		width: 100px;
+		height: 50px;
+		object-fit: cover;
+	}
+	
+	#snapshot_list{
+		max-height: 200px;
+		min-height: 50px;
+		width: $snapshot_width;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+	
+	#snap_box{
+		display: block;
+		width: 30px;
+		height: 30px;
+		
+	}
+	
+	// MetaData
+	#metadata{
+		color: white;
+	}
+	
+	//Measure
+	#measure{
+		color: white;
+	}
+	
+	#button {
+		margin: 10px;
+		position: relative;
+		height: 30px;
+		width: 220px;
+		
+		.button {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			//background: white;
+			cursor: pointer;
+			
+			/*
+			&.on {
+				background: red;
+			}*/
+		}
+	}
+	
+	#section_footer
+	{	
+		display: block;
+		
+		//position: absolute;	
+		//bottom: 0;
+		width:  $right_width;
+		height: 80px;
+		color: white;
+		
+		.credits_icons
+		{
+			display: block;
+			width:  240px;
+			height: 40px;
+			margin: auto;
+			margin-left: 20px;
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		
+		.credits{
+			font-size: 8px;
+			text-align: center;
+		}
+	}
+	
+	%icon_base{
+		padding: 0 5px;
+		margin: 0;
+	}
+	
+	
+	.icon_logo_riken{
+		@extend %icon_base;
+		height: 40px;
+		width: auto;
+		
+	}
+	
+	.icon_logo_cl{
+		@extend %icon_base;
+		height: 40px;
+		width: auto;		
+	}
+	
+	.icon_logo_riken_database
+	{
+		@extend %icon_base;
+		height: 40px;
+		width: auto;
+		
+	}
+	
+	#section_snapshot
+	{
+		.section_content
+		{
+			padding-top: 10px;
+			padding-bottom: 10px;	
+		}
+		
+	}
+	
+	#section_annotation{
+		
+		.section_content
+		{
+			padding-top: 10px;
+			padding-bottom: 10px;	
+		}
+	}
+	
+	#section_measure{
+		
+		.section_content
+		{
+			padding-top: 10px;
+			padding-bottom: 10px;	
+		}
+	}
+	
+	#section_file{
+		
+		.section_content
+		{
+			padding-top: 10px;
+			padding-bottom: 10px;	
+		}
+	}
+	
+}
+
+#right_shortcut
+{
+	
+	display: none;
+	
+	$right_width: 35px;
+	
+	background-color: rgba(0,0,0,0.8);
+	width: $right_width;
+	position: absolute;
+	height: calc(100vh);
+	right: 0;
+	top: 0px;
+	z-index: $LAYER_UI;
+	
+	#shortcut_close_btn{
+		margin: 8px;
+		width: 15px;
+		height: 10px;
+	}
+	
+	.shortcut_btn
+	{
+		margin: 4px;
+		width: 26px;
+		height: 26px;	
+	}	
+}
+
+/*
+.pin
+{
+	cursor: pointer;
+	//height: 60px;
+}
+*/
+
+.menu {
+	$menu_width:150px;
+	$menu_height:100px;
+	$menu_padding_left:10px;
+	
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+	width: $menu_width;
+	height: $menu_height;
+	transform: translateY(-$menu_height/2);
+	background: rgba(255, 255, 255, 0.96);
+	border-radius: 5px;
+	padding-left: $menu_padding_left;
+	z-index: $LAYER_ANNOTATION_MENU;
+	
+	&:after {
+		content: '';
+		width: 0;
+		height: 0;
+		border-top: 10px solid rgba(255, 255, 255, 0.96);
+		border-left: 8px solid transparent;
+		border-right: 8px solid transparent;
+		position: absolute;
+		top: 100%;
+		left: calc(50% - 8px);
+	}
+	&.bottom {
+		&:after {
+		}
+	}
+	&.show {
+		opacity: 1;
+		pointer-events: auto;
+	}
+	input {
+		outline: none;
+		width: $menu_width - $menu_padding_left * 2;
+		margin-top: 10px;
+	}
+	
+	//使い回すコードに書き換え
+	.position-x
+	{
+		display: inline-block;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 12px;
+	}
+	
+	.position-y
+	{
+		display: inline-block;
+		margin-left: 10px;
+		color: rgba(0, 0, 0, 0.5);
+		font-size: 12px;
+	}
+	
+	.number-x
+	{
+		display: inline-block;
+		color: black;	
+		font-size: 12px;
+	}
+	
+	.number-y
+	{
+		display: inline-block;
+		color: black;
+		font-size: 12px;
+	}
+	
+	.btn_box{
+		margin-top: 5px;
+	}
+	
+	.ui_btn{
+		margin-left: 0px;
+	}
+	
+	.annotation_menu_btn
+	{
+		display: block;
+		margin-left: 0px;
+		width: 30px;
+
+		color: rgba(0, 0, 0, 0.5);
+	}
+	
+	.annotation_input_text{
+		
+		
+	}
+	
+}
+
+/*
+
+#delete_all_btn{
+	width: 100px;
+	height: 50px;
+	display: block;
+	color: white;
+	background-color: gray;
+	
+	
+}*/
